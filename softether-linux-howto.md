@@ -30,3 +30,9 @@ This utility connects to the VPN client running on your local machine.
 - Enter `^D` to exit the `vpncmd` utility
 - At the Linux command prompt, enter `dhclient vpn_vpn_se` to obtain an IP address from the VPN DHCP server
 - `ip a` to show the `vpn_se` interface and the assigned IPv4 address
+
+## Disconnect from SoftEther VPN
+- Run `vpncmd` if you have not already done so.  Select option 2 and press `ENTER` to connect to your local VPN Client.
+- `AccountDisconnect [accountName]` to disconnect from the VPN server
+- Enter `^D` to exit the `vpncmd ` utility
+- At the Linux command prompt, enter `vpnclient stop`
