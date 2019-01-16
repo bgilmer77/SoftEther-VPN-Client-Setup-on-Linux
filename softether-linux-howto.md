@@ -28,8 +28,28 @@ This utility connects to the VPN client running on your local machine.
 - `AccountConnect [accountName]` to connect to the VPN server
 - `AccountList` shows connection settings.  Look for `Connected` under `Status`
 - Enter `^D` to exit the `vpncmd` utility
-- At the Linux command prompt, enter `dhclient vpn_vpn_se` to obtain an IP address from the VPN DHCP server
+
+## Modify Route Table
+Now that you are connected to the VPN and have an IP address, you must modify your IP route table to send traffic through the VPN.  The procedure below will send ALL traffic from your computer through the VPN to the Internet.  N.B. you will lose connectivity to local devices on your network such as printers.  (I am short on time - if anyone using this can submit a PR with commands to restore routing for local devices, please do so.)
+- `cat /proc/sys/net/ipv4/ip_forward` to check if IP Forwarding is enabled.  If '1' is returned then skip the next step
+- `echo 1 > /proc/sys/net/ipv4/ip_forward`
+- `dhclient vpn_vpn_se` to obtain an IP address from the VPN DHCP server
 - `ip a` to show the `vpn_se` interface and the assigned IPv4 address
+- `netstat -rn` to show the route table prior to modification
+The following assumes that your local network is 192.168.0.0/24 and your default gateway is 192.168.0.1, and that the IP address of the remote VPN server is 15.48.223.55.
+- `sudo ip route add 15.48.223.55/32 via 192.168.0.1`
+- Delete the old default route. `ip route del default via 192.168.0.1`
+Review the new route table with `netstat -rn`
+
+Ping google's nameservers at 8.8.8.8 `ping 8.8.8.8 -c4`
+
+Check your public IP address `wget -qO- http://ipecho.net/plain ; echo` <- note that in this line, O is "capital letter O".
+
+## Disconnect from VPN and restore route table
+- `vpnclient stop`
+- `ip route del 15.48.223.55/32`
+` `ip route add default via 192.168.0.1`
+
 
 ## Disconnect from SoftEther VPN
 - Run `vpncmd` if you have not already done so.  Select option 2 and press `ENTER` to connect to your local VPN Client.
