@@ -49,10 +49,3 @@ Check your public IP address `wget -qO- http://ipecho.net/plain ; echo` <- note 
 - `vpnclient stop`
 - `ip route del 15.48.223.55/32`
 ` `ip route add default via 192.168.0.1`
-
-
-## Disconnect from SoftEther VPN
-- Run `vpncmd` if you have not already done so.  Select option 2 and press `ENTER` to connect to your local VPN Client.
-- `AccountDisconnect [accountName]` to disconnect from the VPN server
-- Enter `^D` to exit the `vpncmd ` utility
-- At the Linux command prompt, enter `vpnclient stop`
