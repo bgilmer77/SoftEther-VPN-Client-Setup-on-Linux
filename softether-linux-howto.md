@@ -9,7 +9,7 @@ Specifically, these instructions were written for an Intel NUC running Kali Linu
 These instructions were based upon SoftEther documentation and an article found at https://www.cactusvpn.com.
 
 ## Install SoftEther
-- Download the appropriate version of the VPN client from www.softether.com
+- Download the appropriate version of the VPN client from www.softether.org
 - Run the `.install.sh` script that is provided with the client
 - Start the VPN Client `vpnclient start`
 
