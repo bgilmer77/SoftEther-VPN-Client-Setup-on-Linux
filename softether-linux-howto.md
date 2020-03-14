@@ -6,7 +6,7 @@ The purpose of these workshops is to further the development of technical specif
 
 This how-to is written as a quick guide for those who want to install and configure the SoftEther VPN Client on a Linux system.
 Specifically, these instructions were written for an Intel NUC running Kali Linux.
-These instructions were based upon SoftEther documentation and an article found at https://www.cactusvpn.com.
+These instructions were based upon SoftEther documentation and an article found at https://www.cactusvpn.com/tutorials/how-to-set-up-softether-vpn-client-on-linux/.
 
 ## Install SoftEther
 - Download the appropriate version of the VPN client from www.softether.org
