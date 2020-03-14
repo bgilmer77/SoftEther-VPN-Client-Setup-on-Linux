@@ -20,7 +20,14 @@ This utility connects to the VPN client running on your local machine.
 - Run `vpncmd` and choose option 2.  Press `ENTER` to connect to the client running on your local machine.
 - `check` to test your installation.
 - `NicCreate vpn_se` to create a virtual VPN interface on your computer
-- `AccountCreate [accountName]` to create your account. The VPN server URL is `nmos-api-test.softether.net`.  You will need to contact the AMWA to obtain login credentials.
+- `AccountCreate [accountName]` to create your account.
+You will need the following information:
+* User Name (You will need to contact the AMWA to obtain login credentials)
+* Account Name (this may be any name you choose)
+* VPN server URL (The current AMWA URL is `amwa-nmos-vpn..softether.net`)
+* Virtual hub to connect to (For AMWA use `NMOS-VPN`)
+* Virtual Network Adapter Name (You created this earlier - `vpn_se`)
+
 - `AccountPassword [accountName]` to enter your VPN account password.  Specify `Standard` when requested.
 
 ## Connect to SoftEther VPN
