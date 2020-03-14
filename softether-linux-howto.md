@@ -22,11 +22,11 @@ This utility connects to the VPN client running on your local machine.
 - `NicCreate vpn_se` to create a virtual VPN interface on your computer
 - `AccountCreate [accountName]` to create your account.
 You will need the following information:
-* User Name (You will need to contact the AMWA to obtain login credentials)
-* Account Name (this may be any name you choose)
-* VPN server URL (The current AMWA URL is `amwa-nmos-vpn..softether.net`)
-* Virtual hub to connect to (For AMWA use `NMOS-VPN`)
-* Virtual Network Adapter Name (You created this earlier - `vpn_se`)
+  * User Name (You will need to contact the AMWA to obtain login credentials)
+  * Account Name (this may be any name you choose)
+  * VPN server URL (The current AMWA URL is `amwa-nmos-vpn..softether.net`)
+  * Virtual hub to connect to (For AMWA use `NMOS-VPN`)
+  * Virtual Network Adapter Name (You created this earlier - `vpn_se`)
 
 - `AccountPassword [accountName]` to enter your VPN account password.  Specify `Standard` when requested.
 
