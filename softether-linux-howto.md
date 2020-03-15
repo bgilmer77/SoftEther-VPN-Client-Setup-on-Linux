@@ -37,7 +37,13 @@ You will need the following information:
 - Enter `^D` to exit the `vpncmd` utility
 
 ## Modify Route Table
-Now that you are connected to the VPN and have an IP address, you must modify your IP route table to send traffic through the VPN.  The procedure below will send ALL traffic from your computer through the VPN to the Internet.  N.B. you will lose connectivity to local devices on your network such as printers.  (I am short on time - if anyone using this can submit a PR with commands to restore routing for local devices, please do so.)
+Now that you are connected to the VPN and have an IP address, you must modify your IP route table to send traffic through the VPN.
+There are two procedures below.
+The first will route ALL traffic from your computer through the VPN, including traffic destined for the Internet.
+The second will route traffic from your computer throught the VPN and on to the VPN network, but leaves your default route in place so that traffic destined for the Internet still uses your local network interface.
+
+### Route ALL traffic from your computer through the VPN
+N.B. you will lose connectivity to local devices on your network such as printers.  (I am short on time - if anyone using this can submit a PR with commands to restore routing for local devices, please do so.)
 - `cat /proc/sys/net/ipv4/ip_forward` to check if IP Forwarding is enabled.  If '1' is returned then skip the next step
 - `echo 1 > /proc/sys/net/ipv4/ip_forward`
 - `dhclient vpn_vpn_se` to obtain an IP address from the VPN DHCP server
@@ -52,7 +58,28 @@ Ping google's nameservers at 8.8.8.8 `ping 8.8.8.8 -c4`
 
 Check your public IP address `wget -qO- http://ipecho.net/plain ; echo` <- note that in this line, O is "capital letter O".
 
+### Route only VPN traffic through the VPN interface
+- `cat /proc/sys/net/ipv4/ip_forward` to check if IP Forwarding is enabled.  If '1' is returned then skip the next step
+- `echo 1 > /proc/sys/net/ipv4/ip_forward`
+- `dhclient vpn_vpn_se` to obtain an IP address from the VPN DHCP server
+- `ip a` to show the `vpn_se` interface and the assigned IPv4 address
+- `netstat -rn` to show the route table prior to modification
+The following assumes that your local network is 192.168.0.0/24 and your default gateway is 192.168.0.1, and that the IP address of the remote VPN server is 15.48.223.55.
+
+- Delete the default route added by the `dhclient` command you issued earlier. `sudo ip route del default via 192.168.0.1`
+
+
+Review the new route table with `netstat -rn`
+
+Ping google's nameservers at 8.8.8.8 `ping 8.8.8.8 -c4`
+
+Ping the remote gateway at 192.168.0.1 `ping 192.168.0.1 -c4`
+
+Check your public IP address `wget -qO- http://ipecho.net/plain ; echo` <- note that in this line, O is "capital letter O".
+The IP address returned should be your local public IP address.
+
+
 ## Disconnect from VPN and restore route table
 - `vpnclient stop`
 - `ip route del 15.48.223.55/32`
-` `ip route add default via 192.168.0.1`
+- `ip route add default via 192.168.0.1`
