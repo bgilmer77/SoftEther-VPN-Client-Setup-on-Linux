@@ -48,7 +48,8 @@ N.B. you will lose connectivity to local devices on your network such as printer
 - `echo 1 > /proc/sys/net/ipv4/ip_forward`
 - `dhclient vpn_vpn_se` to obtain an IP address from the VPN DHCP server
 - `ip a` to show the `vpn_se` interface and the assigned IPv4 address
-- `netstat -rn` to show the route table prior to modification
+- `netstat -rn` to show the route table prior to modification.
+
 The following assumes that your local network is 192.168.0.0/24 and your default gateway is 192.168.0.1, and that the IP address of the remote VPN server is 15.48.223.55.
 - `sudo ip route add 15.48.223.55/32 via 192.168.0.1`
 - Delete the old default route. `ip route del default via 192.168.0.1`
