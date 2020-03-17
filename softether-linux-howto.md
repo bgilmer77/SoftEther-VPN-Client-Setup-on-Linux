@@ -24,7 +24,7 @@ This utility connects to the VPN client running on your local machine.
 You will need the following information:
   * User Name (You will need to contact the AMWA to obtain login credentials)
   * Account Name (this may be any name you choose)
-  * VPN server URL (The current AMWA URL is `amwa-nmos-vpn..softether.net`)
+  * VPN server URL (The current AMWA URL is `amwa-nmos-vpn.softether.net`)
   * Virtual hub to connect to (For AMWA use `NMOS-VPN`)
   * Virtual Network Adapter Name (You created this earlier - `vpn_se`)
 
