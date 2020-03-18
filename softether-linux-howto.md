@@ -45,7 +45,7 @@ The second will route traffic from your computer throught the VPN and on to the 
 ### Route ALL traffic from your computer through the VPN
 N.B. you will lose connectivity to local devices on your network such as printers.  (I am short on time - if anyone using this can submit a PR with commands to restore routing for local devices, please do so.)
 - `cat /proc/sys/net/ipv4/ip_forward` to check if IP Forwarding is enabled.  If '1' is returned then skip the next step
-- `echo 1 > /proc/sys/net/ipv4/ip_forward`
+- `echo 1 > /proc/sys/net/ipv4/ip_forward` (you may need to `sudo su` to perform this)
 - `dhclient vpn_vpn_se` to obtain an IP address from the VPN DHCP server
 - `ip a` to show the `vpn_se` interface and the assigned IPv4 address
 - `netstat -rn` to show the route table prior to modification.
