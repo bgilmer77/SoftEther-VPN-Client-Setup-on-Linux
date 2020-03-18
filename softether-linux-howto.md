@@ -45,6 +45,7 @@ The second will route traffic from your computer throught the VPN and on to the 
 ### Route ALL traffic from your computer through the VPN
 N.B. you will lose connectivity to local devices on your network such as printers.  (I am short on time - if anyone using this can submit a PR with commands to restore routing for local devices, please do so.)
 - `cat /proc/sys/net/ipv4/ip_forward` to check if IP Forwarding is enabled.  If '1' is returned then skip the next step
+
 (You may need to `sudo su` to perform some of the next commands)
 - `echo 1 > /proc/sys/net/ipv4/ip_forward`
 - `dhclient vpn_vpn_se` to obtain an IP address from the VPN DHCP server
@@ -62,6 +63,7 @@ Check your public IP address `wget -qO- http://ipecho.net/plain ; echo` <- note 
 
 ### Route only VPN traffic through the VPN interface
 - `cat /proc/sys/net/ipv4/ip_forward` to check if IP Forwarding is enabled.  If '1' is returned then skip the next step
+
 (You may need to `sudo su` to perform some of the next commands)
 - `echo 1 > /proc/sys/net/ipv4/ip_forward` 
 - `dhclient vpn_vpn_se` to obtain an IP address from the VPN DHCP server
