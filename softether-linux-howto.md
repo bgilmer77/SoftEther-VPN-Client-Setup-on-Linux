@@ -81,6 +81,17 @@ Ping the remote gateway at 192.168.0.1 `ping 192.168.0.1 -c4`
 Check your public IP address `wget -qO- http://ipecho.net/plain ; echo` <- note that in this line, O is "capital letter O".
 The IP address returned should be your local public IP address.
 
+### Route issues on cloud computers
+
+If you are using a cloud Linux instance that you connect to over the Internet, be aware that the `dhclient` command will likely install a deafult route to the gateway received via DHCP over the VPN, which may cut off your ssh (or other) connection to your cloud Linux instance.
+
+In such as case, you may want to create a script with the following commands:
+```
+dhclient vpn_vpn_se
+route add default gw X.Y.Z.J eth0
+```
+Where X.Y.Z.J is the IP address of your cloud Linux instance Internet gateway, and `eth0` is the Internet facing network interface.
+
 
 ## Disconnect from VPN and restore route table
 - `vpnclient stop`
