@@ -83,7 +83,7 @@ The IP address returned should be your local public IP address.
 
 ### Route issues on cloud computers
 
-If you are using a cloud Linux instance that you connect to over the Internet, be aware that the `dhclient` command will likely install a deafult route to the gateway received via DHCP over the VPN, which may cut off your ssh (or other) connection to your cloud Linux instance.
+If you are using a cloud Linux instance that you connect to over the Internet, be aware that the `dhclient` command will likely install a deafult route to the gateway received via DHCP over the VPN, which may cut off your ssh (or other) Internet connectivity to your cloud Linux instance.
 
 In such as case, you may want to create a script with the following commands:
 ```
@@ -91,6 +91,8 @@ dhclient vpn_vpn_se
 route add default gw X.Y.Z.J eth0
 ```
 Where X.Y.Z.J is the IP address of your cloud Linux instance Internet gateway, and `eth0` is the Internet facing network interface.
+
+Use `netstat -nr` to ensure that the desired route to the VPN subnet IPs is properly being routed over the VPN interface `vpn_vpn_se`.
 
 
 ## Disconnect from VPN and restore route table
