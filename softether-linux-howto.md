@@ -61,7 +61,7 @@ Check your public IP address `wget -qO- http://ipecho.net/plain ; echo` <- note 
 
 ### Route only VPN traffic through the VPN interface
 - `cat /proc/sys/net/ipv4/ip_forward` to check if IP Forwarding is enabled.  If '1' is returned then skip the next step
-- `echo 1 > /proc/sys/net/ipv4/ip_forward`
+- `echo 1 > /proc/sys/net/ipv4/ip_forward` (you may need to `sudo su` to perform this)
 - `dhclient vpn_vpn_se` to obtain an IP address from the VPN DHCP server
 - `ip a` to show the `vpn_se` interface and the assigned IPv4 address
 - `netstat -rn` to show the route table prior to modification
