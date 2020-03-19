@@ -49,6 +49,8 @@ The second will route traffic from your computer throught the VPN and on to the 
 ### Route ALL traffic from your computer through the VPN
 N.B. you will lose connectivity to local devices on your network such as printers.  (I am short on time - if anyone using this can submit a PR with commands to restore routing for local devices, please do so.)
 - `cat /proc/sys/net/ipv4/ip_forward` to check if IP Forwarding is enabled.  If '1' is returned then skip the next step
+
+(You may need to `sudo su` to perform some of the next commands)
 - `echo 1 > /proc/sys/net/ipv4/ip_forward`
 - `dhclient vpn_vpn_se` to obtain an IP address from the VPN DHCP server
 - `ip a` to show the `vpn_se` interface and the assigned IPv4 address
@@ -65,7 +67,9 @@ Check your public IP address `wget -qO- http://ipecho.net/plain ; echo` <- note 
 
 ### Route only VPN traffic through the VPN interface
 - `cat /proc/sys/net/ipv4/ip_forward` to check if IP Forwarding is enabled.  If '1' is returned then skip the next step
-- `echo 1 > /proc/sys/net/ipv4/ip_forward`
+
+(You may need to `sudo su` to perform some of the next commands)
+- `echo 1 > /proc/sys/net/ipv4/ip_forward` 
 - `dhclient vpn_vpn_se` to obtain an IP address from the VPN DHCP server
 - `ip a` to show the `vpn_se` interface and the assigned IPv4 address
 - `netstat -rn` to show the route table prior to modification
@@ -82,6 +86,20 @@ Ping the remote gateway at 192.168.0.1 `ping 192.168.0.1 -c4`
 
 Check your public IP address `wget -qO- http://ipecho.net/plain ; echo` <- note that in this line, O is "capital letter O".
 The IP address returned should be your local public IP address.
+
+### Route issues on cloud computers
+
+Be aware that the `dhclient` command will install a deafult route to the gateway received via DHCP over the VPN.  
+If you are using a cloud Linux instance, you will loose your ssh (or other) Internet connectivity to your cloud Linux instance.
+
+In such as case, you may want to create a script with the following commands:
+```
+dhclient vpn_vpn_se
+route add default gw X.Y.Z.J eth0
+```
+Where X.Y.Z.J is the IP address of your cloud Linux instance Internet gateway, and `eth0` is the Internet facing network interface.
+
+Use `netstat -nr` to ensure that the desired route to the VPN subnet IPs is properly being routed over the VPN interface `vpn_vpn_se`.
 
 
 ## Disconnect from VPN and restore route table
