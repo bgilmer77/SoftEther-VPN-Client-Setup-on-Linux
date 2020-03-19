@@ -85,7 +85,8 @@ The IP address returned should be your local public IP address.
 
 ### Route issues on cloud computers
 
-If you are using a cloud Linux instance that you connect to over the Internet, be aware that the `dhclient` command will likely install a deafult route to the gateway received via DHCP over the VPN, which may cut off your ssh (or other) Internet connectivity to your cloud Linux instance.
+Be aware that the `dhclient` command will install a deafult route to the gateway received via DHCP over the VPN.  
+If you are using a cloud Linux instance, you will loose your ssh (or other) Internet connectivity to your cloud Linux instance.
 
 In such as case, you may want to create a script with the following commands:
 ```
