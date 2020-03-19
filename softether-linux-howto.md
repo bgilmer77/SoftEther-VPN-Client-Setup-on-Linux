@@ -25,8 +25,12 @@ You will need the following information:
   * User Name (You will need to contact the AMWA to obtain login credentials)
   * Account Name (this may be any name you choose)
   * VPN server URL (The current AMWA URL is `amwa-nmos-vpn.softether.net`)
+  * port number for the VPN server. In the case of the AMWA VPN it is 443
   * Virtual hub to connect to (For AMWA use `NMOS-VPN`)
   * Virtual Network Adapter Name (You created this earlier - `vpn_se`)
+  
+  Note: during account creation, when asked, `Desination VPN Server Host Name and Port Number:`, enter the information as follows:
+  `amwa-nmos-vpn.softether.net:443`
 
 - `AccountPassword [accountName]` to enter your VPN account password.  Specify `Standard` when requested.
 
